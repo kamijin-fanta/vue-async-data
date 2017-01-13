@@ -4,7 +4,7 @@
 
 Async data loading plugin for Vue.js
 
-### Install
+## Install
 
 - this plugin is written in ES2015,
   so recommend compile with babel/babel-polyfill.
@@ -29,7 +29,7 @@ export default {
 }
 ```
 
-### Usage
+## Usage
 
 ``` html
 <template>
@@ -62,9 +62,9 @@ export default {
 ```
 
 
-### Standard API
+## Standard API
 
-#### this.asyncData: object
+### this.asyncData: object
 
 specify a function that returns `Promise`.
 you can also specify a default value.
@@ -80,7 +80,7 @@ asyncData: {
 },
 ```
 
-#### this.asyncReload([name])
+### this.asyncReload([name])
 
 refresh data.
 
@@ -92,25 +92,25 @@ this.asyncReload()
 ```
 
 
-#### this.asyncLoading: boolean
+### this.asyncLoading: boolean
 
 global reload flag.
 
-#### this.asyncError: boolean
+### this.asyncError: boolean
 
 global error flag.
 
 
-### Auto Generate Property
+## Auto Generate Property
 
-#### this.[name]
+### this.[name]
 
 if `resolve`, set response.
 
-#### this.[name]Error
+### this.[name]Error
 
 if throw `reject`, set error message.
 
-#### this.[name]Loading: boolean
+### this.[name]Loading: boolean
 
 set to true until there response.
