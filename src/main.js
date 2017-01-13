@@ -12,6 +12,12 @@ let AsyncDataMixin = {
         let names = Object.keys(asyncData)
           .filter(s => !s.endsWith('Default'))
           .filter(s => name === undefined || s === name);
+
+        if (name !== undefined && name.length === 0) {
+          console.error(`asyncData.${name} cannot find.`);
+          return;
+        }
+
         for (let prop of names) {
           // helper
           let setData = data => { this[prop] = data };
@@ -28,6 +34,11 @@ let AsyncDataMixin = {
 
           setLoading(true);
           setError(undefined);
+
+          if (typeof asyncData[prop] !== 'function') {
+            console.error(`asyncData.${prop} must be funtion. actual: ${asyncData[prop]}`);
+            continue;
+          }
           asyncData[prop].apply(this)
             .then(res => {
               setData(res);
@@ -69,7 +80,6 @@ let AsyncDataMixin = {
 
 let AsyncDataPlugin = {
   install (Vue, options) {
-    // console.log('Plugin Install', options);
     Vue.mixin(AsyncDataMixin)
   }
 }
