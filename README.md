@@ -62,9 +62,55 @@ export default {
 ```
 
 
-### API
+### Standard API
 
 #### this.asyncData: object
+
+specify a function that returns `Promise`.
+you can also specify a default value.
+
+```js
+asyncData: {
+  userName () {
+    return new Promise((resolve) => {
+      resolve('risa');
+    })
+  },
+  userNameDefault: 'unknown',
+},
+```
+
 #### this.asyncReload([name])
-#### this.asyncLoading: object
-#### this.asyncError: object
+
+refresh data.
+
+if name arg is specified, only that field is updated.
+
+```js
+this.asyncReload('userName')
+this.asyncReload()
+```
+
+
+#### this.asyncLoading: boolean
+
+global reload flag.
+
+#### this.asyncError: boolean
+
+global error flag.
+
+
+### Auto Generate Property
+
+#### this.[name]
+
+if `resolve`, set response.
+
+#### this.[name]Error
+
+if throw `reject`, set error message.
+
+#### this.[name]Loading: boolean
+
+set to true until there response.

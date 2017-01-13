@@ -14,7 +14,7 @@ let AsyncDataMixin = {
           .filter(s => name === undefined || s === name);
 
         if (name !== undefined && name.length === 0) {
-          console.error(`asyncData.${name} cannot find.`);
+          console.error(`asyncData.${name} cannot find.`, this);
           return;
         }
 
@@ -36,7 +36,7 @@ let AsyncDataMixin = {
           setError(undefined);
 
           if (typeof asyncData[prop] !== 'function') {
-            console.error(`asyncData.${prop} must be funtion. actual: ${asyncData[prop]}`);
+            console.error(`asyncData.${prop} must be funtion. actual: ${asyncData[prop]}`, this);
             continue;
           }
           asyncData[prop].apply(this)
