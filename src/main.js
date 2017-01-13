@@ -1,4 +1,4 @@
-var AsyncDataMixin = {
+let AsyncDataMixin = {
   created () {
   },
   mounted () {
@@ -16,12 +16,12 @@ var AsyncDataMixin = {
           // helper
           let setData = data => { this[prop] = data };
           let setError = err => {
-            this[prop + 'Error'] = err;
+            this[`${prop}Error`] = err;
             if (err) this.asyncError = true;
-            else this.asyncError = !!names.find(n => this[n + 'Error']);
+            else this.asyncError = !!names.find(n => this[`${n}Error`]);
           };
           let setLoading = flag => {
-            this[prop + 'Loading'] = flag
+            this[`${prop}Loading`] = flag
             if (flag) this.asyncLoading = true;
             else this.asyncLoading = !!names.find(n => this[`${n}Loading`]);
           };
@@ -67,16 +67,16 @@ var AsyncDataMixin = {
   }
 }
 
-var AsyncDataPlugin = {
+let AsyncDataPlugin = {
   install (Vue, options) {
     // console.log('Plugin Install', options);
     Vue.mixin(AsyncDataMixin)
   }
 }
 
-var api = {
-  AsyncDataPlugin: AsyncDataPlugin,
-  AsyncDataMixin: AsyncDataMixin,
+let api = {
+  AsyncDataPlugin,
+  AsyncDataMixin,
 }
 
 if (typeof exports === 'object' && typeof module === 'object') {
