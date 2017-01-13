@@ -10,7 +10,7 @@ Async data loading plugin for Vue.js
   so recommend compile with babel/babel-polyfill.
 
 ``` bash
-npm install kamijin-fanta/vue-async-data
+npm install git+https://github.com/kamijin-fanta/vue-async-data.git
 ```
 
 ``` js
