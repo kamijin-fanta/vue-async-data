@@ -1,20 +1,28 @@
+let optionNames = [
+  'Default',
+  'Lazy',
+];
+let isOptionName = (key, names = optionNames) =>
+  names.find(n => key.endsWith(n));
+
 let AsyncDataMixin = {
   created () {
   },
   mounted () {
-    this.asyncReload();
+    this.asyncReload(undefined, true);
   },
   methods: {
     // name args optional
-    asyncReload (name) {
+    asyncReload (propertyName, skipLazy = false) {
       let asyncData = this.$options.asyncData;
       if (asyncData) {
         let names = Object.keys(asyncData)
-          .filter(s => !s.endsWith('Default'))
-          .filter(s => name === undefined || s === name);
+          .filter(s => !isOptionName(s))
+          .filter(s => propertyName === undefined || s === propertyName)
+          .filter(s => skipLazy === false || !asyncData[`${s}Lazy`]);
 
-        if (name !== undefined && name.length === 0) {
-          console.error(`asyncData.${name} cannot find.`, this);
+        if (propertyName !== undefined && names.length === 0) {
+          console.error(`asyncData.${propertyName} cannot find.`, this);
           return;
         }
 
@@ -61,13 +69,15 @@ let AsyncDataMixin = {
       };
 
       let names = Object.keys(asyncData)
-        .filter(s => !s.endsWith('Default'));
+        .filter(s => !isOptionName(s));
       names.forEach(name => {
         dataObj[name] = asyncData[`${name}Default`];
       });
 
-      let loadingNames = names.map(s => `${s}Loading`);
-      loadingNames.forEach(name => { dataObj[name] = true });
+      names.forEach(name => {
+        let loadingName = `${name}Loading`
+        dataObj[loadingName] = !`${name}Lazy`
+      });
 
       let errorNames = names.map(s => `${s}Error`);
       errorNames.forEach(name => { dataObj[name] = undefined });

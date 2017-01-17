@@ -86,4 +86,33 @@ describe('AsyncData', () => {
     });
     expect(rejectVm.asyncError).toEqual(false);
   })
+
+  it('lazy reload.', () => {
+    let spy = jasmine.createSpy();
+
+    let lazyVm = new Vue({
+      template: `<div></div>`,
+      mixins: [ AsyncDataMixin ],
+      asyncData: {
+        sandbox () {
+          return new Promise((resolve, reject) => {
+            resolve('OK!');
+            spy();
+          });
+        },
+        sandboxDefault: 'Default!',
+        sandboxLazy: true,
+      }
+    }).$mount();
+
+    expect(lazyVm.sandboxLoading).toEqual(false);
+    expect(spy).not.toHaveBeenCalled();
+
+    lazyVm.asyncReload('sandbox');
+    expect(spy).toHaveBeenCalled();
+    spy.calls.reset();
+
+    lazyVm.asyncReload();
+    expect(spy).toHaveBeenCalled();
+  })
 })
