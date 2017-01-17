@@ -71,12 +71,13 @@ you can also specify a default value.
 
 ```js
 asyncData: {
-  userName () {
+  userName () {  // return promise
     return new Promise((resolve) => {
       resolve('risa');
     })
   },
-  userNameDefault: 'unknown',
+  userNameDefault: 'unknown',  // default value
+  userNameLazy: false,  // skip run at mount?
 },
 ```
 
