@@ -2,5 +2,5 @@
 /* eslint-disable no-extend-native */
 Function.prototype.bind = require('function-bind')
 
-const testsContextInSrc = require.context('./src', true)
+const testsContextInSrc = require.context('./src', true, /\/(?!.*\.es5)\.*/)
 testsContextInSrc.keys().forEach(testsContextInSrc);
