@@ -30,7 +30,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+          plugins: ['istanbul', 'transform-runtime']
+        },
       },
       {
         test: /\.json$/,
