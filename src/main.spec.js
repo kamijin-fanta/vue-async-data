@@ -105,6 +105,8 @@ describe('AsyncData', () => {
       }
     }).$mount();
 
+    expect(lazyVm.asyncLoading).toEqual(false);
+
     expect(lazyVm.sandboxLoading).toEqual(false);
     expect(spy).not.toHaveBeenCalled();
 

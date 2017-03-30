@@ -1,6 +1,6 @@
 {
   "name": "vue-async-data",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "description": "",
   "main": "src/main.es5.js",
   "scripts": {

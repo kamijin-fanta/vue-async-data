@@ -122,7 +122,7 @@ var AsyncDataMixin = {
     if (asyncData) {
       var _ret3 = function () {
         var dataObj = {
-          'asyncLoading': true,
+          'asyncLoading': false,
           'asyncError': false
         };
 

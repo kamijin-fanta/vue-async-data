@@ -64,7 +64,7 @@ let AsyncDataMixin = {
     let asyncData = this.$options.asyncData;
     if (asyncData) {
       let dataObj = {
-        'asyncLoading': true,
+        'asyncLoading': false,
         'asyncError': false,
       };
 
