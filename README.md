@@ -14,13 +14,13 @@ npm install vue-async-data-2
 ``` js
 // use as global plugin
 import Vue from 'vue';
-import { AsyncDataPlugin } from './utils/asyncdata';
+import { AsyncDataPlugin } from 'vue-async-data-2';
 Vue.use(AsyncDataPlugin);
 ```
 
 ``` js
 // use as locally mixin
-import { AsyncDataMixin } from './utils/asyncdata';
+import { AsyncDataMixin } from 'vue-async-data-2';
 
 export default {
   mixins: [ AsyncDataMixin ],
