@@ -1,7 +1,5 @@
 # vue-async-data for Vue.js 2.0
 
-**this plugin is experimental!**
-
 Async data loading plugin for Vue.js
 
 ## Install
@@ -10,7 +8,7 @@ Async data loading plugin for Vue.js
   so recommend compile with babel/babel-polyfill.
 
 ``` bash
-npm install git+https://github.com/kamijin-fanta/vue-async-data.git
+npm install vue-async-data-2
 ```
 
 ``` js
