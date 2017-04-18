@@ -2,6 +2,8 @@
 
 Async data loading plugin for Vue.js
 
+[![NPM](https://nodei.co/npm/vue-async-data-2.png)](https://nodei.co/npm/vue-async-data-2/)
+
 ## Install
 
 - this plugin is written in ES2015,
