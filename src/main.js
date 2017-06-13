@@ -49,12 +49,16 @@ let AsyncDataMixin = {
           }
           asyncData[prop].apply(this)
             .then(res => {
-              setData(res);
-              setLoading(false);
+              this.$nextTick(() => {
+                setData(res);
+                setLoading(false);
+              });
             })
             .catch(err => {
-              setError(err);
-              setLoading(false);
+              this.$nextTick(() => {
+                setError(err);
+                setLoading(false);
+              });
             });
         }
       }
