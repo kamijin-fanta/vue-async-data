@@ -84,11 +84,15 @@ var AsyncDataMixin = {
                 return 'continue';
               }
               asyncData[prop].apply(_this).then(function (res) {
-                setData(res);
-                setLoading(false);
+                _this.$nextTick(function () {
+                  setData(res);
+                  setLoading(false);
+                });
               }).catch(function (err) {
-                setError(err);
-                setLoading(false);
+                _this.$nextTick(function () {
+                  setError(err);
+                  setLoading(false);
+                });
               });
             };
 
